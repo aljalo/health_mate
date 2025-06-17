@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_mate/screens/blood_sugar_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../models/blood_pressure.dart';
@@ -34,10 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.language, color: Colors.white),
               items: [
                 DropdownMenuItem(value: Locale('en'), child: Text('English')),
-    DropdownMenuItem(value: Locale('ar'), child: Text('العربية')),
-    DropdownMenuItem(value: Locale('tr'), child: Text('Türkçe')),
-    DropdownMenuItem(value: Locale('de'), child: Text('Deutsch')),
-    DropdownMenuItem(value: Locale('ru'), child: Text('Русский')),
+                DropdownMenuItem(value: Locale('ar'), child: Text('العربية')),
+                DropdownMenuItem(value: Locale('tr'), child: Text('Türkçe')),
+                DropdownMenuItem(value: Locale('de'), child: Text('Deutsch')),
+                DropdownMenuItem(value: Locale('ru'), child: Text('Русский')),
               ],
               onChanged: (locale) {
                 if (locale != null) {
@@ -69,6 +70,20 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => _showAddDialog(context),
               icon: Icon(Icons.add),
               label: Text(tr('add_new_reading')),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => BloodSugarScreen()),
+                );
+              },
+              icon: Icon(Icons.monitor_heart),
+              label: Text('Manage Blood Sugar'),
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               ),

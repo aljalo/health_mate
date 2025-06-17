@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:health_mate/models/blood_sugar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'models/blood_pressure.dart';
 import 'screens/home_screen.dart';
@@ -10,7 +11,10 @@ void main() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(BloodPressureAdapter());
+Hive.registerAdapter(BloodSugarAdapter());
+
   await Hive.openBox<BloodPressure>('bloodBox');
+  await Hive.openBox<BloodSugar>('sugarBox');
 
   runApp(
     EasyLocalization(
