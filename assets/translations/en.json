@@ -1,0 +1,11 @@
+{
+  "app_title": "HealthMate",
+  "last_bp_reading": "Last Blood Pressure Reading",
+  "no_data": "No data yet",
+  "add_new_reading": "Add New Reading",
+  "cancel": "Cancel",
+  "save": "Save",
+  "systolic": "Systolic",
+  "diastolic": "Diastolic",
+  "enter_bp": "Enter Blood Pressure"
+}
