@@ -1,11 +1,54 @@
 {
-  "app_title": "HealthMate",
-  "last_bp_reading": "Last Blood Pressure Reading",
-  "no_data": "No data yet",
-  "add_new_reading": "Add New Reading",
-  "cancel": "Cancel",
-  "save": "Save",
-  "systolic": "Systolic",
-  "diastolic": "Diastolic",
-  "enter_bp": "Enter Blood Pressure"
+  "app_name": "Health Mate",
+
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "add": "Add",
+    "enter_value": "Enter Value",
+    "language": "Language",
+    "select_language": "Select Language",
+    "no_data_yet": "No data yet",
+    "last_reading": "Last Reading",
+    "add_new_reading": "Add New Reading",
+    "date": "Date"
+  },
+
+  "blood_pressure": {
+    "title": "Blood Pressure Management",
+    "last_reading": "Last Blood Pressure Reading",
+    "systolic": "Systolic",
+    "diastolic": "Diastolic",
+    "enter_blood_pressure": "Enter Blood Pressure"
+    
+  },
+
+  "blood_sugar": {
+    "title": "Blood Sugar Management",
+    "last_reading": "Last Blood Sugar Reading",
+    "blood_sugar": "Blood Sugar",
+    "blood_sugar_mg_dl": "Blood Sugar (mg/dL)",
+    "enter_blood_sugar": "Enter Blood Sugar",
+    "manage_blood_sugar":"Manage Blood Sugar"
+  },
+
+  "medications": {
+    "title": "Medications",
+    "add_medication": "Add Medication",
+    "medication_name": "Medication Name",
+    "dosage": "Dosage",
+    "reminder_time": "Reminder Time",
+     "select_time": "Select Time",
+     "no_medications_added_yet":"No medications added yet."
+  },
+
+  "diary": {
+    "title": "Medical Diary",
+    "add_diary_entry": "Add Diary Entry",
+    "diary_entry": "Diary Entry"
+  },
+
+  "chart": {
+    "title": "Chart"
+  }
 }
