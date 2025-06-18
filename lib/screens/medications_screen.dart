@@ -1,10 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:health_mate/utils/date_utils.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/medication.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MedicationsScreen extends StatefulWidget {
+  const MedicationsScreen({super.key});
+
   @override
   _MedicationsScreenState createState() => _MedicationsScreenState();
 }
@@ -18,21 +21,21 @@ class _MedicationsScreenState extends State<MedicationsScreen> {
     medicationBox = Hive.box<Medication>('medicationsBox');
   }
 
-  DateTime _timeOfDayToDateTime(TimeOfDay tod) {
-    final now = DateTime.now();
-    return DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
-  }
+  // DateTime _timeOfDayToDateTime(TimeOfDay tod) {
+  //   final now = DateTime.now();
+  //   return DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
+  // }
 
-  String _formatTime(DateTime dt) {
-    final hour = dt.hour > 12
-        ? dt.hour - 12
-        : dt.hour == 0
-        ? 12
-        : dt.hour;
-    final minute = dt.minute.toString().padLeft(2, '0');
-    final period = dt.hour >= 12 ? 'PM' : 'AM';
-    return '$hour:$minute $period';
-  }
+  // String _formatTime(DateTime dt) {
+  //   final hour = dt.hour > 12
+  //       ? dt.hour - 12
+  //       : dt.hour == 0
+  //       ? 12
+  //       : dt.hour;
+  //   final minute = dt.minute.toString().padLeft(2, '0');
+  //   final period = dt.hour >= 12 ? 'PM' : 'AM';
+  //   return '$hour:$minute $period';
+  // }
 
   void _showAddMedicationDialog() {
     final nameController = TextEditingController();
@@ -98,7 +101,10 @@ class _MedicationsScreenState extends State<MedicationsScreen> {
                       final medication = Medication(
                         name: nameController.text,
                         dosage: dosageController.text,
-                        reminderTime: _timeOfDayToDateTime(reminderTime!),
+                        //reminderTime: _timeOfDayToDateTime(reminderTime!),
+                        reminderTime: DateUtilsHelper.timeOfDayToDateTime(
+                          reminderTime!,
+                        ),
                       );
                       medicationBox.add(medication);
                       Navigator.pop(context);
@@ -134,7 +140,7 @@ class _MedicationsScreenState extends State<MedicationsScreen> {
               return ListTile(
                 title: Text(med.name),
                 subtitle: Text(
-                  'medications.dosage: ${med.dosage}\nmedications.reminder_time: ${_formatTime(med.reminderTime)}'
+                  'medications.dosage: ${med.dosage}\nmedications.reminder_time: ${DateUtilsHelper.formatTime(med.reminderTime)}'
                       .tr(),
                 ),
               );

@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import '../models/blood_sugar.dart';
 
 class BloodSugarScreen extends StatefulWidget {
+  const BloodSugarScreen({super.key});
+
   @override
   _BloodSugarScreenState createState() => _BloodSugarScreenState();
 }

@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import '../models/blood_pressure.dart';
 
 class BloodPressureScreen extends StatefulWidget {
-  const BloodPressureScreen({Key? key}) : super(key: key);
+  const BloodPressureScreen({super.key});
 
   @override
   State<BloodPressureScreen> createState() => _BloodPressureScreenState();
