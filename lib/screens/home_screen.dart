@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:health_mate/screens/settings_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -44,23 +45,52 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.w),
-            child: DropdownButton<Locale>(
-              underline: SizedBox(),
-              icon: Icon(
-                Icons.language,
-                color: Theme.of(context).iconTheme.color,
-              ),
-              onChanged: (Locale? locale) {
-                if (locale != null) {
-                  context.setLocale(locale);
-                }
-              },
-              items: [
-                DropdownMenuItem(value: Locale('en'), child: Text('English')),
-                DropdownMenuItem(value: Locale('ar'), child: Text('العربية')),
-                DropdownMenuItem(value: Locale('gr'), child: Text('Deutsch')),
-                DropdownMenuItem(value: Locale('ru'), child: Text('Русский')),
-                DropdownMenuItem(value: Locale('tr'), child: Text('Türkçe')),
+            child: Row(
+              children: [
+                DropdownButton<Locale>(
+                  underline: SizedBox(),
+                  icon: Icon(
+                    Icons.language,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                  onChanged: (Locale? locale) {
+                    if (locale != null) {
+                      context.setLocale(locale);
+                    }
+                  },
+                  items: [
+                    DropdownMenuItem(
+                      value: Locale('en'),
+                      child: Text('English'),
+                    ),
+                    DropdownMenuItem(
+                      value: Locale('ar'),
+                      child: Text('العربية'),
+                    ),
+                    DropdownMenuItem(
+                      value: Locale('gr'),
+                      child: Text('Deutsch'),
+                    ),
+                    DropdownMenuItem(
+                      value: Locale('ru'),
+                      child: Text('Русский'),
+                    ),
+                    DropdownMenuItem(
+                      value: Locale('tr'),
+                      child: Text('Türkçe'),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 2.w),
+                IconButton(
+                  icon: Icon(Icons.settings),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SettingsScreen()),
+                    );
+                  },
+                ),
               ],
             ),
           ),

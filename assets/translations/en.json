@@ -50,5 +50,14 @@
 
   "chart": {
     "title": "Chart"
-  }
+  },
+  "settings":{
+  "title": "Settings",
+  "language": "Language",
+  "theme": "Theme",
+  "theme_system": "System",
+  "theme_light": "Light",
+  "theme_dark": "Dark"
+}
+
 }

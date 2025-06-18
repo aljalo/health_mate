@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_mate/models/theme_mode_enum.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -20,7 +21,8 @@ void main() async {
   Hive.registerAdapter(BloodPressureAdapter());
   Hive.registerAdapter(BloodSugarAdapter());
   Hive.registerAdapter(MedicationAdapter());
-
+  Hive.registerAdapter(AppThemeModeAdapter());
+  await Hive.openBox('settingsBox');
   await Hive.openBox<BloodPressure>('pressureBox');
   await Hive.openBox<BloodSugar>('sugarBox');
   await Hive.openBox<Medication>('medicationsBox');
@@ -35,9 +37,28 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  late Box settingsBox;
+  late AppThemeMode appThemeMode;
+@override
+  void initState() {
+    super.initState();
+    settingsBox = Hive.box('settingsBox');
+    appThemeMode = settingsBox.get('themeMode', defaultValue: AppThemeMode.system);
+    settingsBox.watch(key: 'themeMode').listen((event) {
+      setState(() {
+        appThemeMode = event.value;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -46,8 +67,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           theme: ThemeData.light(),
           darkTheme: ThemeData.dark(),
-          themeMode: ThemeMode.dark,
-          //themeMode: ThemeMode.system,
+          themeMode: _getThemeMode(), //ThemeMode.dark,
           debugShowCheckedModeBanner: false,
           title: 'HealthMate',
 
@@ -63,6 +83,17 @@ class MyApp extends StatelessWidget {
         );
       },
     );
+  }
+  ThemeMode _getThemeMode() {
+    switch (appThemeMode) {
+      case AppThemeMode.light:
+        return ThemeMode.light;
+      case AppThemeMode.dark:
+        return ThemeMode.dark;
+      case AppThemeMode.system:
+      default:
+        return ThemeMode.system;
+    }
   }
 }
 
