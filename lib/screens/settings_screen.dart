@@ -74,15 +74,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 items: [
                   DropdownMenuItem(
                     value: AppThemeMode.system,
-                    child: Text('settings.system'),
+                    child: Text('settings.theme_system'.tr()),
                   ),
                   DropdownMenuItem(
                     value: AppThemeMode.light,
-                    child: Text('settings.light'),
+                    child: Text('settings.theme_light'.tr()),
                   ),
                   DropdownMenuItem(
                     value: AppThemeMode.dark,
-                    child: Text('settings.dark'),
+                    child: Text('settings.theme_dark'.tr()),
                   ),
                 ],
               ),
